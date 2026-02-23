@@ -1,0 +1,14 @@
+#cloud-config
+autoinstall:
+  version: 1
+  identity:
+    hostname: ubuntu-golden
+    username: packer
+    password: "$6$waAaAUDaGbH/XAHY$0LQ2WXuajXyYChMUu8RNrfShN5RGuFS3uQK9TeitfDPOpaBWzUghs014yG2d8WZPp4GIazEZUW4B6.x8/3n.E/"
+  ssh:
+    install-server: true
+    allow-pw: true
+  packages:
+    - openssh-server
+  late-commands:
+    - curtin in-target --target=/target -- systemctl enable ssh
