@@ -1,0 +1,42 @@
+---
+- name: Configure Golden Image
+  hosts: all
+  become: true
+
+  tasks:
+
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Upgrade packages
+      apt:
+        upgrade: dist
+
+    - name: Install base utilities
+      apt:
+        name:
+          - curl
+          - vim
+          - git
+          - htop
+        state: present
+
+    - name: Clean apt cache
+      command: apt clean
+
+    - name: Remove SSH host keys
+      file:
+        path: /etc/ssh/
+        state: directory
+
+    - name: Remove existing SSH host keys
+      shell: rm -f /etc/ssh/ssh_host_*
+
+    - name: Truncate machine-id
+      command: truncate -s 0 /etc/machine-id
+
+    - name: Remove cloud-init state
+      file:
+        path: /var/lib/cloud
+        state: absent
