@@ -1,0 +1,36 @@
+# Packer
+output-*
+packer_cache/
+
+# VirtualBox
+*.vdi
+*.vmdk
+*.ovf
+*.ova
+
+# Logs
+*.log
+
+# Ansible
+*.retry
+.ansible/
+
+# Cloud-init artifacts
+cidata.iso
+
+# AWS
+.aws/
+*.pem
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Terraform (future-proofing)
+.terraform/
+*.tfstate
+*.tfstate.backup
+
+# IDE
+.vscode/
+.idea/
